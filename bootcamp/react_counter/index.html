@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>React Counter</title>
+    </head>
+
+    <body>
+
+        <!-- element where application will be rendered -->
+        <div id="root"></div>
+        
+        <!-- include React and ReactDOM -->
+        <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+        <!-- include Babel standalone so we can process JSX -->
+        <script crossorigin src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+        
+        <!-- Render a JSX expression into the <div> with id="root" -->
+        <script type="text/babel">
+
+            const root = ReactDOM.createRoot(document.getElementById('root'));
+            
+            function Welcome({name, favFood}) {
+                return <h1>Hello, {name}! Your favorite food is {favFood}.</h1>;
+            }
+
+            function Counter(props) {
+                
+                const [count, setCount] = React.useState(props.initCount || 0);
+
+                let incrementHandler = (event) => {
+                    console.log("increment clicked!");
+                    if (count < 20) {
+                        setCount(count + 1);
+                    }
+                };
+
+                let decrementHandler = (event) => {
+                    console.log("decrement clicked!");
+                    if (count > 0) {
+                        setCount(count - 1);
+                    }
+                };
+
+                let resetHandler = (event) => {
+                    console.log("reset clicked!");
+                    setCount(0);
+                };
+
+                return (
+                    <div className="Counter">
+                        <button onClick={decrementHandler}>-</button>
+                        <span style={{color: count >= 10 ? 'red': 'black'}}>{count}</span>
+                        <button onClick={incrementHandler}>+</button>
+                        {count>0 && <button onClick={resetHandler}>Reset</button>}
+                    </div>
+                );
+            }
+            
+            root.render(
+                <div>
+                    <Welcome name="Aravind" favFood="Thai"/>
+                    <Counter initCount={5}/>
+                    <Counter/>
+                </div>
+            );
+        </script>
+    </body>
+</html>
