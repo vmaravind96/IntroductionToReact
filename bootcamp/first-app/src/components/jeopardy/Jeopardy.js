@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import JeopardyDisplay from "./JeopardyDisplay";
 
 function Jeopardy(props) {
   const [score, setScore] = useState(0);
@@ -31,7 +32,7 @@ function Jeopardy(props) {
   };
 
   const handleSubmit = (event) => {
-    if (jeopardyData.answer === answerField.current.value){
+    if (jeopardyData.answer === answerField.current.value) {
       console.log("Correct answer");
       setScore(score + jeopardyData.value);
     } else {
@@ -43,23 +44,12 @@ function Jeopardy(props) {
 
   //present the results to the user
   return (
-    <div className="Jeopardy">
-      {/* Displaying the question to help you get started */}
-      <div><strong>Quiz:</strong></div>
-      <br/>
-      <div><strong>Question:</strong> {jeopardyData.question}</div>
-      <div><strong>Category Title:</strong> {jeopardyData.category.title || "Dummy"}</div>
-      <div><strong>Point Value:</strong> {jeopardyData.value}</div>
-      <hr/>
-      <div>
-        <label><strong>Type your answer here:</strong></label>
-        <input type="text" ref={answerField} name="answer"/>
-      </div>
-      <button onClick={handleSubmit}>Check Answer</button>
-      <hr/>
-      <br/>
-      <div><strong>User Current Score:</strong> {score}</div>
-    </div>
+    <JeopardyDisplay
+      jeopardyData={jeopardyData}
+      score={score}
+      handleSubmit={handleSubmit}
+      answerField={answerField}
+    />
   );
 }
 
