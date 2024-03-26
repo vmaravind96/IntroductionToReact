@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>React Sports</title>
+</head>
+
+<body>
+    
+    <!-- element where application will be rendered -->
+    <div id="root"></div>
+    
+    <!-- include React and ReactDOM -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- include Babel standalone so we can process JSX -->
+    <script crossorigin src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    
+    <!-- Render a JSX expression into the <div> with id="root" -->
+    <script type="text/babel">
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+
+        const Team = (props) => {
+
+            const [shotsTaken, setShotsTaken] = React.useState(0);
+            const [score, setScore] = React.useState(0);
+
+            const shotHandler = (event) => {
+                setShotsTaken(shotsTaken + 1);
+
+                if (Math.random() > 0.50) {
+                    setScore(score + 1);
+                }
+            }; 
+
+            return (
+                <div className="Team">
+                    <div>Name: {props.teamName}</div>
+                    <div>Shots taken: {shotsTaken}</div>
+                    <div>Score: {score}</div>
+                    <button onClick={shotHandler}>Shoot</button>
+                </div>
+            );
+        };
+
+        const App = (props) => {
+            return (
+                <div className="App">
+                    <h3> Welcome to our Sports game ! </h3>
+
+                    <hr/>
+                    
+                    <div><strong>Home</strong></div>
+                    <Team teamName="Chelsea"/>
+                    
+                    <hr/>
+
+                    <div><strong>Away</strong></div>
+                    <Team teamName="Arsenal"/>
+                </div>
+            );
+        };
+        
+        root.render(<div><App/></div>);
+    </script>
+</body>
+
+</html>
