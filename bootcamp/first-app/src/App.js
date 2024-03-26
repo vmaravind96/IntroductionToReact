@@ -1,23 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
+import Clock from './components/Clock';
+import Contact from './components/Contact';
+import Navigation from './components/Navigation';
+import NoMatch from './components/NoMatch';
+import Welcome from './components/Welcome';
+
+import { Routes, Route } from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+      <Navigation/>
+
+      <Routes>
+        <Route path="/" element={<Welcome name="Aravind"/>}/>
+        <Route path="/clock" element={<Clock/>}/>
+        <Route path="/contact" element={<Contact/>}/>
+        <Route path="/welcome/:name" element={<Welcome/>}/>
+        <Route path="*" element={<NoMatch/>}/>
+      </Routes>
     </div>
   );
 }
