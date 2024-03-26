@@ -6,6 +6,7 @@ import NoMatch from './components/NoMatch';
 import Welcome from './components/Welcome';
 
 import { Routes, Route } from "react-router-dom";
+import Jeopardy from './components/jeopardy/Jeopardy';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/clock" element={<Clock/>}/>
         <Route path="/contact" element={<Contact/>}/>
         <Route path="/welcome/:name" element={<Welcome/>}/>
+        <Route path="/jeopardy" element={<Jeopardy/>}/>
         <Route path="*" element={<NoMatch/>}/>
       </Routes>
     </div>
